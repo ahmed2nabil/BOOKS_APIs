@@ -7,7 +7,6 @@ const db_config = {
     idleTimeoutMillis: 200,
     max: 20
 }
-
 const pool = new Pool({db_config});
 
 pool.on('connect', client => {

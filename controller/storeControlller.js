@@ -5,7 +5,7 @@ exports.getStoreList = async (req, res) => {
     try {
         var storeListQuery = queries.queryList.GET_STORE_LIST_QUERY;
        var result = await dbConnection.dbQuery(storeListQuery);
-        return res.status(200).send(JSON.stringify(result));
+        return res.status(200).send(JSON.stringify(result.rows));
     }
     catch(e) {
         console.log("Error: ", e);
@@ -25,7 +25,7 @@ exports.saveStore = async (req,res) => {
         }
         let storeCode = util.generateStoreCode();
         var saveStoreQuery = queries.queryList.SAVE_STORE_QUERY;
-        values = [storeCode, storeName, storeAddress, createdBy, createdOn];
+        values = [storeName, storeCode, storeAddress, createdBy, createdOn];
         var result = await dbConnection.dbQuery(saveStoreQuery,values);
         return res.status(201).send("Store Created Successfully") ;       
     } catch (err) {
