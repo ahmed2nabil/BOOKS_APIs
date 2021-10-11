@@ -17,9 +17,6 @@ app.use(bodyParser.json());
 
 app.use("/api/v1",storeRoute);
 
-app.get("/",(req,res) => {
-res.send("HELLO REVISION")
-});
 
 app.listen(PORT,()=> {
     console.log(`Server starts ... at PORT ${PORT}`)

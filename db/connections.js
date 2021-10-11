@@ -1,5 +1,3 @@
-const { rejects } = require("assert");
-const { resolve } = require("path/posix");
 const pool = require("./pool");
 
 

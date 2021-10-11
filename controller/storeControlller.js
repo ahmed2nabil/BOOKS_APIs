@@ -1,7 +1,7 @@
 var queries = require("../db/queries");
 var dbConnection = require("../db/connections");
 var util = require("../util/utility");
-exports.getStoreList = (req, res) => {
+exports.getStoreList = async (req, res) => {
     try {
         var storeListQuery = queries.queryList.GET_STORE_LIST_QUERY;
        var result = await dbConnection.dbQuery(storeListQuery);
@@ -13,7 +13,7 @@ exports.getStoreList = (req, res) => {
     }
 }
 
-exports.saveStore = (req,res) => {
+exports.saveStore = async (req,res) => {
     try {
         var createdOn = new Date();
         var createdBy = 'admin';
