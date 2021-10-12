@@ -12,5 +12,11 @@ exports.queryList = {
                     (BOOK_TITLE, BOOK_DESCRIPTION, BOOK_AUTHOR, BOOK_PUBLISHER, BOOK_PAGES, STORE_CODE, CREATED_ON, CREATED_BY)
                     VALUES($1, $2, $3, $4, $5, $6, $7, $8);
 
-    `
+    `,
+    UPDATE_BOOK_QUERY : `
+                        UPDATE BMS.BOOK
+                        SET BOOK_TITLE=$1, BOOK_DESCRIPTION=$2, BOOK_AUTHOR=$3, BOOK_PUBLISHER=$4, BOOK_PAGES=$5, STORE_CODE=$6, CREATED_ON=$7, CREATED_BY=$8
+                        WHERE BOOK_ID=$9;
+    `,
+    DELETE_BOOK_QUERY : 'DELETE FROM BMS.BOOK WHERE BOOK_ID=$1;'
 }
