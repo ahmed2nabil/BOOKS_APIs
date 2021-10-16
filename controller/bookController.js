@@ -1,10 +1,14 @@
 var queries = require("../db/queries");
 var dbConnection = require("../db/connections");
 var util = require("../util/utility");
+var Logger = require("../services/loggerService");
+
+const logger = new Logger("bookController");
 exports.getBookList = async (req, res) => {
     try {
         var bookListQuery = queries.queryList.GET_BOOK_LIST_QUERY;
        var result = await dbConnection.dbQuery(bookListQuery);
+       logger.info("return BOOK List ", JSON.stringify(result.rows));
         return res.status(200).send(JSON.stringify(result.rows));
     }
     catch(e) {
