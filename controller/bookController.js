@@ -19,6 +19,8 @@ exports.getBookList = async (req, res) => {
     }
     catch(e) {
         console.log("Error: ", e);
+        let errorMessage = "Failed to list book: " + e;
+        auditService.prepareAudit(auditAction.GET_BOOK_LIST, null, JSON.stringify(errorMessage),"postman", util.dateFormat()); 
         return res.status(500).send({error : 'Failed to list book'})
     }
 }
