@@ -2,14 +2,20 @@ var queries = require("../db/queries");
 var dbConnection = require("../db/connections");
 var util = require("../util/utility");
 var Logger = require("../services/loggerService");
+var auditService = require("../audit/auditService");
+var {auditAction} = require("../audit/auditAction");
 
 const logger = new Logger("bookController");
 exports.getBookList = async (req, res) => {
     try {
         var bookListQuery = queries.queryList.GET_BOOK_LIST_QUERY;
        var result = await dbConnection.dbQuery(bookListQuery);
+       
        logger.info("return BOOK List ", JSON.stringify(result.rows));
-        return res.status(200).send(JSON.stringify(result.rows));
+       console.log(util.dateFormat());
+       auditService.prepareAudit(auditAction.GET_BOOK_LIST, JSON.stringify(result.rows), null,"postman", util.dateFormat()); 
+       
+       return res.status(200).send(JSON.stringify(result.rows));
     }
     catch(e) {
         console.log("Error: ", e);
