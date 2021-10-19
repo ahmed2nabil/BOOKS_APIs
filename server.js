@@ -26,3 +26,5 @@ app.use("/api/v1",bookRoute);
 app.listen(PORT,()=> {
     console.log(`Server starts ... at PORT ${PORT}`)
 })
+
+module.exports = app 
