@@ -5,6 +5,10 @@ var Logger = require("../services/loggerService");
 var auditService = require("../audit/auditService");
 var {auditAction} = require("../audit/auditAction");
 
+var APIERROR = require("../error/apiError");
+var errorStatus = require("../error/errorStatus");
+var errorType = require("../error/errorType");
+
 const logger = new Logger("bookController");
 exports.getBookList = async (req, res) => {
     try {
@@ -29,11 +33,21 @@ exports.getBookDetails = async (req, res) => {
     try {
         var bookDetailsQuery = queries.queryList.GET_BOOK_DETAILS_QUERY;
         var bookId = req.params.bookId;
-       var result = await dbConnection.dbQuery(bookDetailsQuery,[bookId]);
+        
+        if(isNaN(bookId)) 
+        {
+        throw new APIERROR(errorType.API_ERROR,
+        errorStatus.INTERNAL_SERVER_ERROR,
+        "Invalid bookId, is not a number, bookId values is: " + bookId,
+        true );
+        }
+       
+        var result = await dbConnection.dbQuery(bookDetailsQuery,[bookId]);
         return res.status(200).send(JSON.stringify(result.rows[0]));
     }
     catch(e) {
         console.log("Error: ", e);
+        logger.error("Failed to get book details", JSON.stringify(e));
         return res.status(500).send({error : 'Failed to list book'})
     }
 }
@@ -58,6 +72,9 @@ exports.saveBook = async (req,res) => {
         return res.status(201).send("Added BOOK Successfully") ;       
     } catch (err) {
         console.log("Error: ", err);
+        if(err.name === errorType.API_ERROR)
+        // send e-mail 
+        
         return res.status(500).send({error : 'Failed to create book'})
     }
 

@@ -33,16 +33,16 @@ class LoggerService {
         this.logger.log('info', message ,{obj});
     }
     async error(message) {
-        this.logger.log('error '+ message);
+        this.logger.log('error', message);
     }
     async error(message, obj) {
-        this.logger.log('error '+ message,{obj});
+        this.logger.log('error', message,{obj});
     }
     async debug(message) {
-        this.logger.log('debug '+ message);
+        this.logger.log('debug', message);
     }
     async debug(message, obj) {
-        this.logger.log('debug '+ message,{obj});
+        this.logger.log('debug', message,{obj});
     }
 }
 
