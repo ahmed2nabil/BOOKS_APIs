@@ -6,3 +6,4 @@ Book API to learn and practice some topics with node.js:
 - Swagger UI
 - Unit Testing
 - Error Handeling
+- Security
