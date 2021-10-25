@@ -1,11 +1,12 @@
+'use strict'
 var passwordValidator = require('password-validator');
 
 var passwordChecker = new passwordValidator();
 
 exports.isValidEmail = (email) => {
-const regEx = /\S+@\S+\.S+/ ; 
-return regEx.test(email) ;
-}
+    const regEx = /\S+@\S+\.\S+/;
+    return regEx.test(email);
+  };
 exports.isValidPassword = (password) => {
     passwordChecker
     .is().min(8)                                    // Minimum length 8

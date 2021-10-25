@@ -60,17 +60,17 @@ exports.saveUser = async (req,res) => {
         if(user.rows[0].count != '0') {
         return res.status(500).send({error : "User already exists"});
         }
-        if(validation.isValidEmail(email)) {
+        if(!validation.isValidEmail(email)) {
         return res.status(500).send({error : "Email is not Valid"});
        }
-       if(validation.isValidPassword(password)) {
-        return res.status(500).send({error : "Email is not Valid"});
+       if(!validation.isValidPassword(password)) {
+        return res.status(500).send({error : "Password is not Valid"});
        }
        //hash password 
 
-      var  hashedPassword = bcrypt.hash(password,12);
-        values = [username, hashedPassword, email, userTypeCode, createdOn, createdBy];
-        var saveUSERQuery = queries.queryList.SAVE_USER_QUERY;
+      var  hashedPassword = await  bcrypt.hash(password, 10);
+      values = [username, hashedPassword, email, userTypeCode, createdOn, createdBy, createdOn, createdBy];
+        var saveUserQuery = queries.queryList.SAVE_USER_QUERY;
         var result = await dbConnection.dbQuery(saveUserQuery,values);
         return res.status(201).send("Added User Successfully") ;       
     } catch (err) {
