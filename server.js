@@ -13,6 +13,9 @@ const PORT = process.env.PORT || 3000;
 var storeRoute = require('./routes/storeRoute');
 var bookRoute = require('./routes/bookRoute');
 var userRoute = require('./routes/userRoute');
+var loginRoute = require('./routes/loginRoute');
+var uploadRoute = require('./routes/uploadRoute');
+
 
 app.use(cors());
 
@@ -24,6 +27,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1",storeRoute);
 app.use("/api/v1",bookRoute);
 app.use("/api/v1",userRoute);
+app.use("/api/v1",loginRoute);
+app.use("/api/v1",uploadRoute);
+
 
 
 app.listen(PORT,()=> {

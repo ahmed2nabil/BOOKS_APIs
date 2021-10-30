@@ -1,5 +1,6 @@
 'use strict'
 var passwordValidator = require('password-validator');
+const bcrypt = require("bcryptjs");
 
 var passwordChecker = new passwordValidator();
 
@@ -18,4 +19,8 @@ exports.isValidPassword = (password) => {
     .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
 return passwordChecker.validate(password);
+}
+
+exports.comparePassword = (password , hashedPassword) => {
+  return bcrypt.compareSync(password, hashedPassword);
 }
