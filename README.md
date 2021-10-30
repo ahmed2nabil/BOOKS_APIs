@@ -7,3 +7,9 @@ Book API to learn and practice some topics with node.js:
 - Unit Testing
 - Error Handeling
 - Security
+- User management
+- Authentication & authorization
+- Upload Files
+- Export data as csv
+- Socket
+- Paypal integration
