@@ -7,10 +7,10 @@ const logger = new Logger("uploadController");
 const multer  = require('multer');
 
 
-exports.uploadFile = async (req, res) => {
+exports.uploadFile = async (req, res, next) => {
     try {
         const upload = multer({ dest: process.env.UPLOAD_PATH}).single('photo');
-        upload((req, res, next) => {
+        upload(req, res, next => {
             try {
                 var path = req.file.path;
                 var file = req.file;
@@ -26,6 +26,6 @@ exports.uploadFile = async (req, res) => {
     }
     catch(e) {
          console.log("Error: ", e);
-        return res.status(500).send({error : 'Failed to list users'})
+        return res.status(500).send({error : 'Failed to upload file'})
     }
  }
