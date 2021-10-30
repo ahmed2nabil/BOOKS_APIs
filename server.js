@@ -15,6 +15,8 @@ var bookRoute = require('./routes/bookRoute');
 var userRoute = require('./routes/userRoute');
 var loginRoute = require('./routes/loginRoute');
 var uploadRoute = require('./routes/uploadRoute');
+var exportRoute = require('./routes/exportRoute');
+
 
 
 app.use(cors());
@@ -29,6 +31,7 @@ app.use("/api/v1",bookRoute);
 app.use("/api/v1",userRoute);
 app.use("/api/v1",loginRoute);
 app.use("/api/v1",uploadRoute);
+app.use("/api/v1",exportRoute);
 
 
 
